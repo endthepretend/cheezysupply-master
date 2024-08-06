@@ -1,0 +1,45 @@
+.cs__front-page-slider-wrapper {
+  min-height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  #front-page-slider {
+    //padding-top: 80px;
+    .slider-item {
+      margin: 5px;
+      color: #000;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      text-align: center;
+
+      img {
+        width: auto;
+        margin: 0 auto;
+      }
+
+      svg {
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+//arrows on first carousel
+#front-page-slider.owl-theme {
+  position: relative;
+  .owl-next, .owl-prev {
+    width: 22px;
+    height: 40px;
+    margin-top: -20px;
+    position: absolute;
+    top: 50%;
+  }
+  .owl-prev {
+    left: 10px;
+  }
+  .owl-next {
+    right: 10px;
+  }
+}

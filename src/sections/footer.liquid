@@ -1,0 +1,129 @@
+<footer>
+
+  <nav role="navigation">
+    <div class="grid cs__footer-nav">
+      <div class="grid__item medium-up--one-quarter">
+        <!-- left menu -->
+        <ul class="site-nav cs__footer-left-menu">
+          {% for link in linklists[section.settings.left_linklist].links %}
+            {%- assign child_list_handle = link.title | handleize -%}
+            {% if menus[child_list_handle].links != blank %}
+              <li class="site-nav--has-submenu{% if link.active %} site-nav--active{% endif %}">
+                <a href="{{ link.url }}" class="site-nav__link">
+                  {{ link.title }}
+                  {% include 'icon-arrow-down' %}
+                </a>
+                <ul class="site-nav__submenu">
+                  {% for childlink in menus[child_list_handle].links %}
+                    <li {% if childlink.active %}class="site-nav--active"{% endif %}>
+                      <a href="{{ childlink.url }}" class="site-nav__link">{{ childlink.title | escape }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </li>
+            {% else %}
+              <li {% if link.active %}class="site-nav--active"{% endif %}>
+                <a href="{{ link.url }}" class="site-nav__link">{{ link.title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="grid__item medium-up--one-half">
+        <!-- center menu -->
+        <ul class="site-nav cs__footer-center-menu">
+          {% for link in linklists[section.settings.main_linklist].links %}
+            {%- assign child_list_handle = link.title | handleize -%}
+            {% if menus[child_list_handle].links != blank %}
+              <li class="site-nav--has-submenu{% if link.active %} site-nav--active{% endif %}">
+                <a href="{{ link.url }}" class="site-nav__link">
+                  {{ link.title }}
+                  {% include 'icon-arrow-down' %}
+                </a>
+                <ul class="site-nav__submenu">
+                  {% for childlink in menus[child_list_handle].links %}
+                    <li {% if childlink.active %}class="site-nav--active"{% endif %}>
+                      <a href="{{ childlink.url }}" class="site-nav__link">{{ childlink.title | escape }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </li>
+            {% else %}
+              <li {% if link.active %}class="site-nav--active"{% endif %}>
+                <a href="{{ link.url }}" class="site-nav__link">{{ link.title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="grid__item medium-up--one-quarter">
+        <!-- right menu -->
+        <ul class="site-nav cs__footer-right-menu">
+          {% for link in linklists[section.settings.right_linklist].links %}
+            {%- assign child_list_handle = link.title | handleize -%}
+            {% if menus[child_list_handle].links != blank %}
+              <li class="site-nav--has-submenu{% if link.active %} site-nav--active{% endif %}">
+                <a href="{{ link.url }}" class="site-nav__link">
+                  {{ link.title }}
+                  {% include 'icon-arrow-down' %}
+                </a>
+                <ul class="site-nav__submenu">
+                  {% for childlink in menus[child_list_handle].links %}
+                    <li {% if childlink.active %}class="site-nav--active"{% endif %}>
+                      <a href="{{ childlink.url }}" class="site-nav__link">{{ childlink.title | escape }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </li>
+            {% else %}
+              <li {% if link.active %}class="site-nav--active"{% endif %}>
+                <a href="{{ link.url }}" class="site-nav__link">{{ link.title }}</a>
+              </li>
+            {% endif %}
+          {% endfor %}
+          {% if cart.item_count != 0 %}
+          <li id="footer-right-menu-cart" class="site-nav--active">
+            <a href="/cart">
+              {{ 'layout.cart.title' | t }}
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</footer>
+
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+      {
+        "type": "link_list",
+        "id": "left_linklist",
+        "label": "Left menu",
+        "default": "footer"
+      },
+      {
+        "type": "link_list",
+        "id": "main_linklist",
+        "label": "Center Menu",
+        "default": "main-menu"
+      },
+      {
+        "type": "link_list",
+        "id": "right_linklist",
+        "label": "Right menu",
+        "default": "footer"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_payment_icons",
+        "label": "Show payment icons",
+        "default": false
+      }
+    ]
+  }
+
+{% endschema %}

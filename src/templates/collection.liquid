@@ -1,0 +1,26 @@
+  <div class="cs__collection-container">
+    <div class="cs__collection-flex">
+      <div class="grid cs__collection-wrapper">
+        {% for product in collection.products %}
+          <div class="grid__item medium-up--one-fifth cs__collection-image">
+            <a href="{{ product.url | within: collection }}">
+              <img src="{{ product.featured_image.src | img_url: '480x480' }}" alt="{{ product.featured_image.alt | escape }}">
+            </a>
+          </div>
+
+        {% else %}
+          {% if collection.handle == 'all' and collection.all_vendors.size == 0 and collection.all_types.size == 0 %}
+            {% for i in (1..8) %}
+              <a href="#">
+                {% capture current %}{% cycle 1, 2, 3, 4, 5, 6 %}{% endcapture %}
+                {{ 'product-' | append: current | placeholder_svg_tag: 'placeholder-svg placeholder-svg--small' }}
+              </a>
+            {% endfor %}
+          {% else %}
+            <p>{{ 'collections.general.no_matches' | t }}</p>
+          {% endif %}
+
+        {% endfor %}
+      </div>
+    </div>
+  </div>

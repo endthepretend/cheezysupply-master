@@ -1,0 +1,23 @@
+/*================ Site Header ================*/
+.site-logo {
+  display: block;
+
+  img {
+    display: block;
+  }
+}
+
+.site-nav {
+  padding-left: 0;
+  text-align: center;
+
+  li {
+    display: inline-block;
+    padding: 12px;
+    font-size: 15px;
+    line-height: 2;
+    box-sizing: border-box;
+    text-decoration-style: solid;
+    -webkit-box-direction: normal;
+  }
+}
